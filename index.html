@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script>
+      let instance;
+      fetch('sum.wasm')
+        .then((response) => response.arrayBuffer())
+        .then((bytes) => WebAssembly.instantiate(bytes, {}))
+        .then((results) => {
+          instance = results.instance;
+          console.log(instance.exports.sum(2, 3));
+        });
+    </script>
+  </head>
+  <body>
+    <h1>WebAssembly will bring future.</h1>
+    <pre>
+      <code>
+        fetch('sum.wasm')
+          .then((response) => response.arrayBuffer())
+          .then((bytes) => WebAssembly.instantiate(bytes, {}))
+          .then((results) => {
+            const instance = results.instance;
+            console.log(instance.exports.sum(x, y));
+          });
+      </code>
+      
+    </pre>
+    <p></p>
+  </body>
+</html>
